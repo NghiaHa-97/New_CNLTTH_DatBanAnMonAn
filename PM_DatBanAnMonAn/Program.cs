@@ -16,7 +16,7 @@ namespace PM_DatBanAnMonAn
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DatBanAnMonAn());
+            Application.Run(new Form_Main());
         }
     }
 }

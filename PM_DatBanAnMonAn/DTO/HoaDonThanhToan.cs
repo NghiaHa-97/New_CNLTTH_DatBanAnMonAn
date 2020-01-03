@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace DatBanAn_MonAn.DTO
 {
-    public class HoaDonThanhToan
+    public class HoaDonThanhToan:PhieuDatBanAn
     {
         public int MaHD { get; set;}
-        public DateTime NgayNhap { get; set; }
-        public int MaNV { get; set; }
+       
     }
 }

@@ -27,6 +27,40 @@ namespace WebAPIService.Controllers
                 return list;
             }
         }
+
+        [HttpGet]
+        [Route("api/phieudatbanan/mamax")]
+        public int NVMaMax()
+        {
+            using (DatBanAnMonAnDataContext context = new DatBanAnMonAnDataContext())
+            {
+                List<PhieuDatBanAn> list = context.PhieuDatBanAns.OrderByDescending(x => x.MaPD).ToList();
+                foreach (PhieuDatBanAn l in list)
+                {
+                    l.BanAn = null;
+                    l.ChiTietPDs.Clear();
+                    l.HoaDonThanhToans.Clear();
+                    l.KhachHang = null;
+                    l.NhanVien = null;
+                }
+                PhieuDatBanAn[] kh1 = list.ToArray();
+
+
+                return kh1[0].MaPD;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/phieudatbanan/danhsachphieudatchuadcthanhtoan")]
+        public List<DanhSchPhieuDatChuaThanhToanResult> DSPDChuaThanhToan()
+        {
+            using (DatBanAnMonAnDataContext context = new DatBanAnMonAnDataContext())
+            {
+                List < DanhSchPhieuDatChuaThanhToanResult > list= context.DanhSchPhieuDatChuaThanhToan().ToList();
+                return list;
+            }
+        }
+
         [HttpPost]
         public bool ThemPhieuDatBan(int mapd, DateTime ngaylap, int tongtien, int manv, int maban, int makh)
         {
@@ -83,7 +117,7 @@ namespace WebAPIService.Controllers
 
         [HttpDelete]
         [HttpPut]
-        public bool SuaPhieuDatBan(int mapdxoa)
+        public bool XoaPhieuDatBan(int mapdxoa)
         {
             try
             {

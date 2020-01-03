@@ -23,6 +23,8 @@ namespace PM_DatBanAnMonAn
             LoadBanAn();
             LoadMonAn();
             LoadNhanVien();
+            LoadMaKH();
+            LoadMaPhieuDat();
         }
 
         public List<BanAn> ListBanAn()
@@ -105,6 +107,81 @@ namespace PM_DatBanAnMonAn
             }
             );
         }
+        public void LoadMaPhieuDat()
+        {
+            DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(int));
+            string url = "http://192.168.163.101/CNLTTICHHOP/api/phieudatbanan/mamax";
+            int gt =(int) Service.Get(url, data);
+            labelMaPhieuDat.Text = gt + 1 + "";
+        }
+
+        public void LoadMaKH()
+        {
+            DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(int));
+            string url = "http://192.168.163.101/CNLTTICHHOP/api/khachhang/mamax";
+            int gt = (int)Service.Get(url, data);
+            labelMaKH.Text = gt + 1 + "";
+        }
+        /// <summary>
+        /// Đặt bàn ăn
+        /// </summary>
+        /// <returns></returns>
+        public bool TaoKhachHang()
+        {
+            string pra = string.Format("?makh={0}&ten={1}&sdt={2}", labelMaKH.Text, textBoxKH.Text, textBoxSDT.Text);
+
+            string url = "http://192.168.163.101/CNLTTICHHOP/api/Khachhang";
+            string methot = "Post";
+            bool kq = Service.Post_Put_Delete(methot, url, pra);
+            return kq;
+        }
+
+        public bool TaoPhieuDatBanAn()
+        {
+            string ngaylap = dateTimePickerNgayDat.Text;
+            string manv = comboBoxNV.Text.Split('-')[0];
+            string maban = labelBanAnDat.Text.Split(':')[1].Split('-')[0];
+            string pra = string.Format("?mapd={0}&ngaylap={1}&tongtien={2}&manv={3}&maban={4}&makh={5}",
+                         labelMaPhieuDat.Text,ngaylap, labelTongTien.Text,manv,maban,labelMaKH.Text);
+
+            string url = "http://192.168.163.101/CNLTTICHHOP/api/phieudatbanan";
+            string methot = "Post";
+            bool kq = Service.Post_Put_Delete(methot, url, pra);
+            return kq;
+        }
+
+        public bool TaoChiTietPhieuDat()
+        {
+            
+            string mapd = labelMaPhieuDat.Text;
+            foreach (string ds in checkedListBoxDS.CheckedItems)
+            {
+                string mama = ds.Split('-')[0];
+                string dongia = ds.Split('-')[3];
+                string soluong = ds.Split('-')[2];
+
+                string pra = string.Format("?mapd={0}&mama={1}&dongia={2}&soluong={3}",
+                        mapd, mama,dongia,soluong );
+
+                string url = "http://192.168.163.101/CNLTTICHHOP/api/chitietpd";
+                string methot = "Post";
+                bool kq = Service.Post_Put_Delete(methot, url, pra);
+                if(kq==false)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+
+
+
+
+
+
+
 
 
         private void listViewBanAn_DoubleClick(object sender, EventArgs e)
@@ -274,6 +351,30 @@ namespace PM_DatBanAnMonAn
 
             }
             labelTongTien.Text = TongTien + "";
+        }
+
+        //button dat mon an ban an
+        private void button6_Click(object sender, EventArgs e)
+        {
+            buttonTT.PerformClick();
+            bool kq=TaoKhachHang();
+            if (kq == false)
+            {
+                MessageBox.Show("Đặt Hàng thất bại");
+                return;
+            }
+            kq=TaoPhieuDatBanAn();
+            if (kq == false)
+            {
+                MessageBox.Show("Đặt Hàng thất bại");
+                return;
+            }
+            kq = TaoChiTietPhieuDat();
+            if(kq==true)
+            {
+                MessageBox.Show("Đặt Hàng Thành Công");
+            }
+
         }
     }
 }

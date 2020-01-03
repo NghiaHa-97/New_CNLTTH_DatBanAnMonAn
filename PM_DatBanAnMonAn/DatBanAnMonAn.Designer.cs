@@ -71,7 +71,9 @@
             this.buttonXoaListBox = new System.Windows.Forms.Button();
             this.buttonTT = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.labelMaKH = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.labelMaPhieuDat = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -84,6 +86,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.labelMaPhieuDat);
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -361,7 +365,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.labelMaKH);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.textBoxSDT);
             this.panel2.Controls.Add(this.textBoxKH);
@@ -489,6 +493,7 @@
             this.button6.TabIndex = 1;
             this.button6.Text = "Đặt";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // buttonXoaListBox
             // 
@@ -520,14 +525,32 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Mã";
             // 
-            // label9
+            // labelMaKH
             // 
-            this.label9.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.label9.Location = new System.Drawing.Point(461, 91);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(232, 26);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "label9";
+            this.labelMaKH.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.labelMaKH.Location = new System.Drawing.Point(461, 91);
+            this.labelMaKH.Name = "labelMaKH";
+            this.labelMaKH.Size = new System.Drawing.Size(232, 26);
+            this.labelMaKH.TabIndex = 11;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Brown;
+            this.label10.Location = new System.Drawing.Point(12, 18);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(102, 20);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Mã Phiếu đặt";
+            // 
+            // labelMaPhieuDat
+            // 
+            this.labelMaPhieuDat.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.labelMaPhieuDat.ForeColor = System.Drawing.Color.IndianRed;
+            this.labelMaPhieuDat.Location = new System.Drawing.Point(127, 18);
+            this.labelMaPhieuDat.Name = "labelMaPhieuDat";
+            this.labelMaPhieuDat.Size = new System.Drawing.Size(136, 22);
+            this.labelMaPhieuDat.TabIndex = 2;
             // 
             // DatBanAnMonAn
             // 
@@ -601,8 +624,10 @@
         private System.Windows.Forms.TextBox textBoxSDT;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonTT;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label labelMaKH;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelMaPhieuDat;
+        private System.Windows.Forms.Label label10;
     }
 }
 

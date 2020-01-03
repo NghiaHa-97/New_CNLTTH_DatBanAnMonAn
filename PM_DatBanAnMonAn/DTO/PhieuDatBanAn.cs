@@ -9,11 +9,11 @@ namespace DatBanAn_MonAn.DTO
     public class PhieuDatBanAn
     {
         public int MaPD { get; set; }
-        public DateTime NgayLap { get; set; }
-        public int MaHD { get; set; }
         public int MaNV { get; set; }
-        public int MaBan { get; set; }
-        public int MaKH { get; set; }
+        public string HoTen { get; set; }
+        public string TenKH { get; set; }
+        public string TenBan { get; set; }
+        public DateTime NgayLap { get; set; }
         public int TongTien { get; set; }
     }
 }

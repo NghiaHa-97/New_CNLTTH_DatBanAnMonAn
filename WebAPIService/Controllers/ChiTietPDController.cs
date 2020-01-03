@@ -130,9 +130,9 @@ namespace WebAPIService.Controllers
             {
                 using (DatBanAnMonAnDataContext context = new DatBanAnMonAnDataContext())
                 {
-                    ChiTietPD ct = context.ChiTietPDs.FirstOrDefault(x => x.MaPD == mapdxoa);
+                    List<ChiTietPD> ct = context.ChiTietPDs.Where(x => x.MaPD == mapdxoa).ToList();
 
-                    context.ChiTietPDs.DeleteOnSubmit(ct);
+                    context.ChiTietPDs.DeleteAllOnSubmit(ct);
                     context.SubmitChanges();
                     return true;
                 }

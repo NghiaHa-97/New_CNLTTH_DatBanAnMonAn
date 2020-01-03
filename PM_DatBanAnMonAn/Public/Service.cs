@@ -24,13 +24,18 @@ namespace PM_DatBanAnMonAn.Public
             string pra1 = pra;
 
 
-
+            //ở đây; đầu tiên là http request gửi từ clien nên server
             HttpWebRequest request = WebRequest.CreateHttp(url + pra);
-
+            //kiểu method
             request.Method = method;
+
+            // định dang trả về
             request.ContentType = "Application/json;charset=UTF-8";
+            //gửi dữ liệu dưới dạng byte nên server theo chuỗi (pra) đó
             byte[] byteArray = Encoding.UTF8.GetBytes(pra);
             request.ContentLength = byteArray.Length;
+
+            //đọc dữ liệu
             Stream data = request.GetRequestStream();
             data.Write(byteArray, 0, byteArray.Length);
             data.Close();
