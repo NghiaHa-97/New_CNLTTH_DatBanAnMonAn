@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDownSoCho = new System.Windows.Forms.NumericUpDown();
             this.textBoxMaTimBA = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBoxTrangThaiBA = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonMa = new System.Windows.Forms.Button();
+            this.numericUpDownSoCho = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -56,6 +56,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm Kiếm Theo mã";
             // 
+            // textBoxMaTimBA
+            // 
+            this.textBoxMaTimBA.Location = new System.Drawing.Point(230, 25);
+            this.textBoxMaTimBA.Name = "textBoxMaTimBA";
+            this.textBoxMaTimBA.Size = new System.Drawing.Size(224, 26);
+            this.textBoxMaTimBA.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(75, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nhập mã";
+            // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -68,6 +84,23 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tìm Kiếm Theo  Trạng Thái";
+            // 
+            // comboBoxTrangThaiBA
+            // 
+            this.comboBoxTrangThaiBA.FormattingEnabled = true;
+            this.comboBoxTrangThaiBA.Location = new System.Drawing.Point(230, 33);
+            this.comboBoxTrangThaiBA.Name = "comboBoxTrangThaiBA";
+            this.comboBoxTrangThaiBA.Size = new System.Drawing.Size(224, 28);
+            this.comboBoxTrangThaiBA.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(66, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Chọn Trạng Thái";
             // 
             // groupBox2
             // 
@@ -82,23 +115,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Số Chỗ Ngồi";
             // 
-            // label1
+            // buttonMa
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(75, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nhập mã";
+            this.buttonMa.Location = new System.Drawing.Point(415, 60);
+            this.buttonMa.Name = "buttonMa";
+            this.buttonMa.Size = new System.Drawing.Size(122, 37);
+            this.buttonMa.TabIndex = 2;
+            this.buttonMa.Text = "OK";
+            this.buttonMa.UseVisualStyleBackColor = true;
+            this.buttonMa.Click += new System.EventHandler(this.buttonMa_Click);
             // 
-            // label2
+            // numericUpDownSoCho
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(66, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Chọn Trạng Thái";
+            this.numericUpDownSoCho.Location = new System.Drawing.Point(230, 33);
+            this.numericUpDownSoCho.Name = "numericUpDownSoCho";
+            this.numericUpDownSoCho.Size = new System.Drawing.Size(86, 26);
+            this.numericUpDownSoCho.TabIndex = 1;
             // 
             // label3
             // 
@@ -108,38 +140,6 @@
             this.label3.Size = new System.Drawing.Size(104, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Chọn Số Chỗ";
-            // 
-            // numericUpDownSoCho
-            // 
-            this.numericUpDownSoCho.Location = new System.Drawing.Point(230, 33);
-            this.numericUpDownSoCho.Name = "numericUpDownSoCho";
-            this.numericUpDownSoCho.Size = new System.Drawing.Size(86, 26);
-            this.numericUpDownSoCho.TabIndex = 1;
-            // 
-            // textBoxMaTimBA
-            // 
-            this.textBoxMaTimBA.Location = new System.Drawing.Point(230, 25);
-            this.textBoxMaTimBA.Name = "textBoxMaTimBA";
-            this.textBoxMaTimBA.Size = new System.Drawing.Size(224, 26);
-            this.textBoxMaTimBA.TabIndex = 1;
-            // 
-            // comboBoxTrangThaiBA
-            // 
-            this.comboBoxTrangThaiBA.FormattingEnabled = true;
-            this.comboBoxTrangThaiBA.Location = new System.Drawing.Point(230, 33);
-            this.comboBoxTrangThaiBA.Name = "comboBoxTrangThaiBA";
-            this.comboBoxTrangThaiBA.Size = new System.Drawing.Size(224, 28);
-            this.comboBoxTrangThaiBA.TabIndex = 1;
-            // 
-            // buttonMa
-            // 
-            this.buttonMa.Location = new System.Drawing.Point(462, 49);
-            this.buttonMa.Name = "buttonMa";
-            this.buttonMa.Size = new System.Drawing.Size(75, 48);
-            this.buttonMa.TabIndex = 2;
-            this.buttonMa.Text = "OK";
-            this.buttonMa.UseVisualStyleBackColor = true;
-            this.buttonMa.Click += new System.EventHandler(this.buttonMa_Click);
             // 
             // TimKiemBanAn
             // 

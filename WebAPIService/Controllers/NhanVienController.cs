@@ -23,5 +23,22 @@ namespace WebAPIService.Controllers
                 return list;
             }
         }
+        //[HttpGet]
+        //[Route("api/nhanvien/mamax")]
+        //public NhanVien NVMaMax()
+        //{
+        //     using (DatBanAnMonAnDataContext context = new DatBanAnMonAnDataContext())
+        //    {
+        //        List<NhanVien> list = context.NhanViens.OrderBy(x=>x.MaNV).ToList();
+        //        foreach(NhanVien nv in list)
+        //        {
+        //            nv.HoaDonThanhToans.Clear();
+        //            nv.PhieuDatBanAns.Clear();
+        //        }
+        //        NhanVien[] nv1 = list.ToArray();
+
+        //        return nv1[0];
+        //    }
+        //}
     }
 }

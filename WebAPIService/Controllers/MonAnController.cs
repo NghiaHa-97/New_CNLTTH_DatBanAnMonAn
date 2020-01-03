@@ -20,7 +20,7 @@ namespace WebAPIService.Controllers
                 List<MonAn> list = context.MonAns.ToList();
                 foreach (MonAn m in list)
                 {
-                    //m.LoaiMonAn = null;
+                    m.LoaiMonAn = null;
                     m.ChiTietPDs.Clear();
                 }
                 return list;

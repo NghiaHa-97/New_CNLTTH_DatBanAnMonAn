@@ -15,13 +15,14 @@ using System.IO;
 using PM_DatBanAnMonAn.Public;
 namespace PM_DatBanAnMonAn
 {
-    public partial class Form1 : Form
+    public partial class DatBanAnMonAn : Form
     {
-        public Form1()
+        public DatBanAnMonAn()
         {
             InitializeComponent();
             LoadBanAn();
             LoadMonAn();
+            LoadNhanVien();
         }
 
         public List<BanAn> ListBanAn()
@@ -75,7 +76,17 @@ namespace PM_DatBanAnMonAn
             ChonSoluongMonAn Formchon = new ChonSoluongMonAn();
             Formchon.labelGia.Text = DonGia * (int)Formchon.numericUpDownSoLuong.Value + "";
             Formchon.DonGia = DonGia;
-            if (Formchon.ShowDialog() == DialogResult.OK)
+            foreach(string x in checkedListBoxDS.Items)
+            {
+                if(int.Parse(x.Split('-')[0])==int.Parse(MaMA))
+                {
+                    MessageBox.Show("Bạn đã chọn món ăn này");
+                    return;
+                }
+                
+            }
+
+                if (Formchon.ShowDialog() == DialogResult.OK)
             {
                 string DS = MaMA + " - " + TenMonAn + " - " + (int)Formchon.numericUpDownSoLuong.Value + " - " + Formchon.labelGia.Text;
                 checkedListBoxDS.Items.Add(DS);
@@ -84,6 +95,15 @@ namespace PM_DatBanAnMonAn
         public void LoadNhanVien()
         {
 
+            DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(List<NhanVien>),
+                new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat("yyyy-MM-ddTHH:mm:ss") }); 
+            string url = "http://192.168.163.101/CNLTTICHHOP/api/nhanvien";
+            List<NhanVien> list = Service.Get(url, data) as List<NhanVien>;
+            list.ForEach(x=>
+            {
+                comboBoxNV.Items.Add(x.MaNV + " - " + x.HoTen);
+            }
+            );
         }
 
 
@@ -99,7 +119,8 @@ namespace PM_DatBanAnMonAn
             string MaBan = lt.Text;
             string TenBan = lt.SubItems[1].Text;
             MessageBox.Show("Bạn đã chọn bàn: " + MaBan + "--" + TenBan);
-            labelBanAn.Text = "Ma:" + MaBan + "--" + TenBan;
+            labelBanAn.Text = "Mã :" + MaBan + "--" + TenBan;
+            labelBanAnDat.Text= "Mã :" + MaBan + "--" + TenBan;
 
         }
 
@@ -209,6 +230,50 @@ namespace PM_DatBanAnMonAn
         private void button2_Click(object sender, EventArgs e)
         {
             ChonMonAn();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int items = checkedListBoxDS.Items.Count;
+            for(int i=0;i<items;i++)
+            {
+                checkedListBoxDS.SetItemChecked(i,true);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int items = checkedListBoxDS.Items.Count;
+            for (int i = 0; i < items; i++)
+            {
+                checkedListBoxDS.SetItemChecked(i, false);
+            }
+        }
+
+        private void buttonXoaListBox_Click(object sender, EventArgs e)
+        {
+            int items = checkedListBoxDS.Items.Count;
+            for (int i = 0; i < items; i++)
+            {
+                if(checkedListBoxDS.GetItemChecked(i)==true)
+                {
+                    checkedListBoxDS.Items.RemoveAt(i);
+                    items = checkedListBoxDS.Items.Count;
+                    i--;
+                }
+            }
+        }
+        public int TongTien=0;
+
+        private void buttonTT_Click(object sender, EventArgs e)
+        {
+            TongTien = 0;
+            foreach(string x in checkedListBoxDS.CheckedItems)
+            {
+                TongTien += int.Parse(x.Split('-')[3]);
+
+            }
+            labelTongTien.Text = TongTien + "";
         }
     }
 }

@@ -22,5 +22,22 @@ namespace WebAPIService.Controllers
                 return list;
             }
         }
+        [HttpGet]
+        [Route("api/khachhang/mamax")]
+        public KhachHang NVMaMax()
+        {
+            using (DatBanAnMonAnDataContext context = new DatBanAnMonAnDataContext())
+            {
+                List<KhachHang> list = context.KhachHangs.OrderByDescending(x => x.MaKH).ToList();
+                foreach (KhachHang kh in list)
+                {
+                    kh.PhieuDatBanAns.Clear();
+                }
+                KhachHang[] kh1 = list.ToArray();
+
+
+                return kh1[0];
+            }
+        }
     }
 }

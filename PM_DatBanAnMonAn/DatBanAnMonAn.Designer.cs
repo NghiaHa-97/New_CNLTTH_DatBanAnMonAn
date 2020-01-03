@@ -1,6 +1,6 @@
 ﻿namespace PM_DatBanAnMonAn
 {
-    partial class Form1
+    partial class DatBanAnMonAn
     {
         /// <summary>
         /// Required designer variable.
@@ -48,15 +48,18 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.buttonTimMonAn = new System.Windows.Forms.Button();
             this.buttonTaiLaiMonAn = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.checkedListBoxDS = new System.Windows.Forms.CheckedListBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxSDT = new System.Windows.Forms.TextBox();
             this.textBoxKH = new System.Windows.Forms.TextBox();
             this.comboBoxNV = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePickerNgayDat = new System.Windows.Forms.DateTimePicker();
@@ -66,7 +69,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.buttonXoaListBox = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonTT = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -274,6 +279,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tìm kiếm món ăn";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(28, 115);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(97, 49);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Chọn Món";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // buttonTimMonAn
             // 
             this.buttonTimMonAn.Location = new System.Drawing.Point(28, 36);
@@ -297,10 +312,13 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.button3);
+            this.groupBox5.Controls.Add(this.buttonTT);
             this.groupBox5.Controls.Add(this.button1);
             this.groupBox5.Controls.Add(this.checkedListBoxDS);
             this.groupBox5.Controls.Add(this.panel2);
             this.groupBox5.Controls.Add(this.buttonXoaListBox);
+            this.groupBox5.Controls.Add(this.labelTongTien);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox5.Location = new System.Drawing.Point(585, 56);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -311,6 +329,16 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Danh Sách món ăn được chọn";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(462, 277);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(97, 49);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Bỏ Chọn Toàn Bộ";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(462, 355);
@@ -319,6 +347,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Chọn Toàn Bộ";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // checkedListBoxDS
             // 
@@ -333,13 +362,15 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.textBoxSDT);
             this.panel2.Controls.Add(this.textBoxKH);
             this.panel2.Controls.Add(this.comboBoxNV);
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.dateTimePickerNgayDat);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.labelTongTien);
             this.panel2.Controls.Add(this.labelBanAnDat);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.button6);
@@ -350,14 +381,13 @@
             this.panel2.Size = new System.Drawing.Size(700, 185);
             this.panel2.TabIndex = 0;
             // 
-            // label9
+            // textBoxSDT
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(328, 91);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(79, 20);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "Tổng Tiền";
+            this.textBoxSDT.Location = new System.Drawing.Point(461, 45);
+            this.textBoxSDT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxSDT.Name = "textBoxSDT";
+            this.textBoxSDT.Size = new System.Drawing.Size(232, 26);
+            this.textBoxSDT.TabIndex = 8;
             // 
             // textBoxKH
             // 
@@ -375,6 +405,15 @@
             this.comboBoxNV.Name = "comboBoxNV";
             this.comboBoxNV.Size = new System.Drawing.Size(232, 28);
             this.comboBoxNV.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(354, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "SDT";
             // 
             // label8
             // 
@@ -416,7 +455,7 @@
             // 
             this.labelTongTien.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.labelTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTongTien.Location = new System.Drawing.Point(328, 124);
+            this.labelTongTien.Location = new System.Drawing.Point(460, 161);
             this.labelTongTien.Name = "labelTongTien";
             this.labelTongTien.Size = new System.Drawing.Size(166, 49);
             this.labelTongTien.TabIndex = 3;
@@ -460,18 +499,37 @@
             this.buttonXoaListBox.TabIndex = 1;
             this.buttonXoaListBox.Text = "Xóa món ăn";
             this.buttonXoaListBox.UseVisualStyleBackColor = true;
+            this.buttonXoaListBox.Click += new System.EventHandler(this.buttonXoaListBox_Click);
             // 
-            // button2
+            // buttonTT
             // 
-            this.button2.Location = new System.Drawing.Point(28, 115);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(97, 49);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Chọn Món";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonTT.Location = new System.Drawing.Point(463, 122);
+            this.buttonTT.Name = "buttonTT";
+            this.buttonTT.Size = new System.Drawing.Size(96, 36);
+            this.buttonTT.TabIndex = 9;
+            this.buttonTT.Text = "Tổng Tiền";
+            this.buttonTT.UseVisualStyleBackColor = true;
+            this.buttonTT.Click += new System.EventHandler(this.buttonTT_Click);
             // 
-            // Form1
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(354, 91);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 20);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Mã";
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.label9.Location = new System.Drawing.Point(461, 91);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(232, 26);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "label9";
+            // 
+            // DatBanAnMonAn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -482,7 +540,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Form1";
+            this.Name = "DatBanAnMonAn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form Đặt bàn ăn món ăn";
             this.panel1.ResumeLayout(false);
@@ -526,7 +584,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxKH;
         private System.Windows.Forms.ComboBox comboBoxNV;
         private System.Windows.Forms.Label label8;
@@ -540,6 +597,12 @@
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.ListView listViewMonAn;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBoxSDT;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonTT;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label5;
     }
 }
 

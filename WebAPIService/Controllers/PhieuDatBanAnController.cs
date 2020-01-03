@@ -28,7 +28,7 @@ namespace WebAPIService.Controllers
             }
         }
         [HttpPost]
-        public bool ThemPhieuDatBan(int mapd, DateTime ngaylap, int mahd, int manv, int maban, int makh)
+        public bool ThemPhieuDatBan(int mapd, DateTime ngaylap, int tongtien, int manv, int maban, int makh)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace WebAPIService.Controllers
                     PhieuDatBanAn pd = new PhieuDatBanAn();
                     pd.MaPD = mapd;
                     pd.NgayLap = ngaylap;
-                    pd.MaHD = mahd;
+                    pd.TongTien = tongtien;
                     pd.MaNV = manv;
                     pd.MaBan = maban;
                     pd.MaKH = makh;
@@ -55,7 +55,7 @@ namespace WebAPIService.Controllers
            
         }
         [HttpPut]
-        public bool SuaPhieuDatBan(int mapdsua, DateTime ngaylap, int mahd, int manv, int maban, int makh)
+        public bool SuaPhieuDatBan(int mapdsua, DateTime ngaylap, int tongtien, int manv, int maban, int makh)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace WebAPIService.Controllers
                     PhieuDatBanAn pd = context.PhieuDatBanAns.FirstOrDefault(x => x.MaPD == mapdsua);
                     
                     pd.NgayLap = ngaylap;
-                    pd.MaHD = mahd;
+                    pd.TongTien = tongtien;
                     pd.MaNV = manv;
                     pd.MaBan = maban;
                     pd.MaKH = makh;

@@ -150,18 +150,18 @@ namespace WebAPIService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DSPhieuDatBanAn")]
-		public ISingleResult<DSPhieuDatBanAnResult> DSPhieuDatBanAn()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<DSPhieuDatBanAnResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DSBanAnCoLoaiMonAn")]
 		public ISingleResult<DSBanAnCoLoaiMonAnResult> DSBanAnCoLoaiMonAn()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<DSBanAnCoLoaiMonAnResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DSPhieuDatBanAn")]
+		public ISingleResult<DSPhieuDatBanAnResult> DSPhieuDatBanAn()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<DSPhieuDatBanAnResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -337,19 +337,19 @@ namespace WebAPIService
 		
 		private System.Nullable<System.DateTime> _NgayLap;
 		
-		private System.Nullable<int> _MaHD;
-		
 		private System.Nullable<int> _MaNV;
 		
 		private System.Nullable<int> _MaBan;
 		
 		private System.Nullable<int> _MaKH;
 		
+		private System.Nullable<int> _TongTien;
+		
 		private EntitySet<ChiTietPD> _ChiTietPDs;
 		
-		private EntityRef<BanAn> _BanAn;
+		private EntitySet<HoaDonThanhToan> _HoaDonThanhToans;
 		
-		private EntityRef<HoaDonThanhToan> _HoaDonThanhToan;
+		private EntityRef<BanAn> _BanAn;
 		
 		private EntityRef<KhachHang> _KhachHang;
 		
@@ -363,21 +363,21 @@ namespace WebAPIService
     partial void OnMaPDChanged();
     partial void OnNgayLapChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayLapChanged();
-    partial void OnMaHDChanging(System.Nullable<int> value);
-    partial void OnMaHDChanged();
     partial void OnMaNVChanging(System.Nullable<int> value);
     partial void OnMaNVChanged();
     partial void OnMaBanChanging(System.Nullable<int> value);
     partial void OnMaBanChanged();
     partial void OnMaKHChanging(System.Nullable<int> value);
     partial void OnMaKHChanged();
+    partial void OnTongTienChanging(System.Nullable<int> value);
+    partial void OnTongTienChanged();
     #endregion
 		
 		public PhieuDatBanAn()
 		{
 			this._ChiTietPDs = new EntitySet<ChiTietPD>(new Action<ChiTietPD>(this.attach_ChiTietPDs), new Action<ChiTietPD>(this.detach_ChiTietPDs));
+			this._HoaDonThanhToans = new EntitySet<HoaDonThanhToan>(new Action<HoaDonThanhToan>(this.attach_HoaDonThanhToans), new Action<HoaDonThanhToan>(this.detach_HoaDonThanhToans));
 			this._BanAn = default(EntityRef<BanAn>);
-			this._HoaDonThanhToan = default(EntityRef<HoaDonThanhToan>);
 			this._KhachHang = default(EntityRef<KhachHang>);
 			this._NhanVien = default(EntityRef<NhanVien>);
 			OnCreated();
@@ -419,30 +419,6 @@ namespace WebAPIService
 					this._NgayLap = value;
 					this.SendPropertyChanged("NgayLap");
 					this.OnNgayLapChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHD", DbType="Int")]
-		public System.Nullable<int> MaHD
-		{
-			get
-			{
-				return this._MaHD;
-			}
-			set
-			{
-				if ((this._MaHD != value))
-				{
-					if (this._HoaDonThanhToan.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaHDChanging(value);
-					this.SendPropertyChanging();
-					this._MaHD = value;
-					this.SendPropertyChanged("MaHD");
-					this.OnMaHDChanged();
 				}
 			}
 		}
@@ -519,6 +495,26 @@ namespace WebAPIService
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Int")]
+		public System.Nullable<int> TongTien
+		{
+			get
+			{
+				return this._TongTien;
+			}
+			set
+			{
+				if ((this._TongTien != value))
+				{
+					this.OnTongTienChanging(value);
+					this.SendPropertyChanging();
+					this._TongTien = value;
+					this.SendPropertyChanged("TongTien");
+					this.OnTongTienChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhieuDatBanAn_ChiTietPD", Storage="_ChiTietPDs", ThisKey="MaPD", OtherKey="MaPD")]
 		public EntitySet<ChiTietPD> ChiTietPDs
 		{
@@ -529,6 +525,19 @@ namespace WebAPIService
 			set
 			{
 				this._ChiTietPDs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhieuDatBanAn_HoaDonThanhToan", Storage="_HoaDonThanhToans", ThisKey="MaPD", OtherKey="MaPD")]
+		public EntitySet<HoaDonThanhToan> HoaDonThanhToans
+		{
+			get
+			{
+				return this._HoaDonThanhToans;
+			}
+			set
+			{
+				this._HoaDonThanhToans.Assign(value);
 			}
 		}
 		
@@ -562,40 +571,6 @@ namespace WebAPIService
 						this._MaBan = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("BanAn");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HoaDonThanhToan_PhieuDatBanAn", Storage="_HoaDonThanhToan", ThisKey="MaHD", OtherKey="MaHD", IsForeignKey=true)]
-		public HoaDonThanhToan HoaDonThanhToan
-		{
-			get
-			{
-				return this._HoaDonThanhToan.Entity;
-			}
-			set
-			{
-				HoaDonThanhToan previousValue = this._HoaDonThanhToan.Entity;
-				if (((previousValue != value) 
-							|| (this._HoaDonThanhToan.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._HoaDonThanhToan.Entity = null;
-						previousValue.PhieuDatBanAns.Remove(this);
-					}
-					this._HoaDonThanhToan.Entity = value;
-					if ((value != null))
-					{
-						value.PhieuDatBanAns.Add(this);
-						this._MaHD = value.MaHD;
-					}
-					else
-					{
-						this._MaHD = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("HoaDonThanhToan");
 				}
 			}
 		}
@@ -695,6 +670,18 @@ namespace WebAPIService
 		}
 		
 		private void detach_ChiTietPDs(ChiTietPD entity)
+		{
+			this.SendPropertyChanging();
+			entity.PhieuDatBanAn = null;
+		}
+		
+		private void attach_HoaDonThanhToans(HoaDonThanhToan entity)
+		{
+			this.SendPropertyChanging();
+			entity.PhieuDatBanAn = this;
+		}
+		
+		private void detach_HoaDonThanhToans(HoaDonThanhToan entity)
 		{
 			this.SendPropertyChanging();
 			entity.PhieuDatBanAn = null;
@@ -929,9 +916,9 @@ namespace WebAPIService
 		
 		private System.Nullable<int> _MaNV;
 		
-		private System.Nullable<int> _TongTien;
+		private System.Nullable<int> _MaPD;
 		
-		private EntitySet<PhieuDatBanAn> _PhieuDatBanAns;
+		private EntityRef<PhieuDatBanAn> _PhieuDatBanAn;
 		
 		private EntityRef<NhanVien> _NhanVien;
 		
@@ -945,13 +932,13 @@ namespace WebAPIService
     partial void OnNgayNhapChanged();
     partial void OnMaNVChanging(System.Nullable<int> value);
     partial void OnMaNVChanged();
-    partial void OnTongTienChanging(System.Nullable<int> value);
-    partial void OnTongTienChanged();
+    partial void OnMaPDChanging(System.Nullable<int> value);
+    partial void OnMaPDChanged();
     #endregion
 		
 		public HoaDonThanhToan()
 		{
-			this._PhieuDatBanAns = new EntitySet<PhieuDatBanAn>(new Action<PhieuDatBanAn>(this.attach_PhieuDatBanAns), new Action<PhieuDatBanAn>(this.detach_PhieuDatBanAns));
+			this._PhieuDatBanAn = default(EntityRef<PhieuDatBanAn>);
 			this._NhanVien = default(EntityRef<NhanVien>);
 			OnCreated();
 		}
@@ -1020,36 +1007,61 @@ namespace WebAPIService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Int")]
-		public System.Nullable<int> TongTien
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaPD", DbType="Int")]
+		public System.Nullable<int> MaPD
 		{
 			get
 			{
-				return this._TongTien;
+				return this._MaPD;
 			}
 			set
 			{
-				if ((this._TongTien != value))
+				if ((this._MaPD != value))
 				{
-					this.OnTongTienChanging(value);
+					if (this._PhieuDatBanAn.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaPDChanging(value);
 					this.SendPropertyChanging();
-					this._TongTien = value;
-					this.SendPropertyChanged("TongTien");
-					this.OnTongTienChanged();
+					this._MaPD = value;
+					this.SendPropertyChanged("MaPD");
+					this.OnMaPDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HoaDonThanhToan_PhieuDatBanAn", Storage="_PhieuDatBanAns", ThisKey="MaHD", OtherKey="MaHD")]
-		public EntitySet<PhieuDatBanAn> PhieuDatBanAns
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhieuDatBanAn_HoaDonThanhToan", Storage="_PhieuDatBanAn", ThisKey="MaPD", OtherKey="MaPD", IsForeignKey=true)]
+		public PhieuDatBanAn PhieuDatBanAn
 		{
 			get
 			{
-				return this._PhieuDatBanAns;
+				return this._PhieuDatBanAn.Entity;
 			}
 			set
 			{
-				this._PhieuDatBanAns.Assign(value);
+				PhieuDatBanAn previousValue = this._PhieuDatBanAn.Entity;
+				if (((previousValue != value) 
+							|| (this._PhieuDatBanAn.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PhieuDatBanAn.Entity = null;
+						previousValue.HoaDonThanhToans.Remove(this);
+					}
+					this._PhieuDatBanAn.Entity = value;
+					if ((value != null))
+					{
+						value.HoaDonThanhToans.Add(this);
+						this._MaPD = value.MaPD;
+					}
+					else
+					{
+						this._MaPD = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("PhieuDatBanAn");
+				}
 			}
 		}
 		
@@ -1105,18 +1117,6 @@ namespace WebAPIService
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_PhieuDatBanAns(PhieuDatBanAn entity)
-		{
-			this.SendPropertyChanging();
-			entity.HoaDonThanhToan = this;
-		}
-		
-		private void detach_PhieuDatBanAns(PhieuDatBanAn entity)
-		{
-			this.SendPropertyChanging();
-			entity.HoaDonThanhToan = null;
 		}
 	}
 	
@@ -1813,122 +1813,6 @@ namespace WebAPIService
 		}
 	}
 	
-	public partial class DSPhieuDatBanAnResult
-	{
-		
-		private int _MaPD;
-		
-		private System.Nullable<System.DateTime> _NgayLap;
-		
-		private System.Nullable<int> _MaHD;
-		
-		private System.Nullable<int> _MaNV;
-		
-		private System.Nullable<int> _MaBan;
-		
-		private System.Nullable<int> _MaKH;
-		
-		public DSPhieuDatBanAnResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaPD", DbType="Int NOT NULL")]
-		public int MaPD
-		{
-			get
-			{
-				return this._MaPD;
-			}
-			set
-			{
-				if ((this._MaPD != value))
-				{
-					this._MaPD = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayLap", DbType="Date")]
-		public System.Nullable<System.DateTime> NgayLap
-		{
-			get
-			{
-				return this._NgayLap;
-			}
-			set
-			{
-				if ((this._NgayLap != value))
-				{
-					this._NgayLap = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHD", DbType="Int")]
-		public System.Nullable<int> MaHD
-		{
-			get
-			{
-				return this._MaHD;
-			}
-			set
-			{
-				if ((this._MaHD != value))
-				{
-					this._MaHD = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNV", DbType="Int")]
-		public System.Nullable<int> MaNV
-		{
-			get
-			{
-				return this._MaNV;
-			}
-			set
-			{
-				if ((this._MaNV != value))
-				{
-					this._MaNV = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaBan", DbType="Int")]
-		public System.Nullable<int> MaBan
-		{
-			get
-			{
-				return this._MaBan;
-			}
-			set
-			{
-				if ((this._MaBan != value))
-				{
-					this._MaBan = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Int")]
-		public System.Nullable<int> MaKH
-		{
-			get
-			{
-				return this._MaKH;
-			}
-			set
-			{
-				if ((this._MaKH != value))
-				{
-					this._MaKH = value;
-				}
-			}
-		}
-	}
-	
 	public partial class DSBanAnCoLoaiMonAnResult
 	{
 		
@@ -2022,6 +1906,122 @@ namespace WebAPIService
 				if ((this._MaLoai != value))
 				{
 					this._MaLoai = value;
+				}
+			}
+		}
+	}
+	
+	public partial class DSPhieuDatBanAnResult
+	{
+		
+		private int _MaPD;
+		
+		private System.Nullable<System.DateTime> _NgayLap;
+		
+		private System.Nullable<int> _MaNV;
+		
+		private System.Nullable<int> _MaBan;
+		
+		private System.Nullable<int> _MaKH;
+		
+		private System.Nullable<int> _TongTien;
+		
+		public DSPhieuDatBanAnResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaPD", DbType="Int NOT NULL")]
+		public int MaPD
+		{
+			get
+			{
+				return this._MaPD;
+			}
+			set
+			{
+				if ((this._MaPD != value))
+				{
+					this._MaPD = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayLap", DbType="Date")]
+		public System.Nullable<System.DateTime> NgayLap
+		{
+			get
+			{
+				return this._NgayLap;
+			}
+			set
+			{
+				if ((this._NgayLap != value))
+				{
+					this._NgayLap = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNV", DbType="Int")]
+		public System.Nullable<int> MaNV
+		{
+			get
+			{
+				return this._MaNV;
+			}
+			set
+			{
+				if ((this._MaNV != value))
+				{
+					this._MaNV = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaBan", DbType="Int")]
+		public System.Nullable<int> MaBan
+		{
+			get
+			{
+				return this._MaBan;
+			}
+			set
+			{
+				if ((this._MaBan != value))
+				{
+					this._MaBan = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Int")]
+		public System.Nullable<int> MaKH
+		{
+			get
+			{
+				return this._MaKH;
+			}
+			set
+			{
+				if ((this._MaKH != value))
+				{
+					this._MaKH = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Int")]
+		public System.Nullable<int> TongTien
+		{
+			get
+			{
+				return this._TongTien;
+			}
+			set
+			{
+				if ((this._TongTien != value))
+				{
+					this._TongTien = value;
 				}
 			}
 		}
