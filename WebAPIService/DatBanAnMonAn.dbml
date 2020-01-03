@@ -5,6 +5,7 @@
       <Column Name="MaBan" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SoChoNgoi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TenBan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="BanAn_PhieuDatBanAn" Member="PhieuDatBanAns" ThisKey="MaBan" OtherKey="MaBan" Type="PhieuDatBanAn" />
     </Type>
   </Table>
@@ -38,6 +39,7 @@
       <Column Name="MaHD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="NgayNhap" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="MaNV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TongTien" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="HoaDonThanhToan_PhieuDatBanAn" Member="PhieuDatBanAns" ThisKey="MaHD" OtherKey="MaHD" Type="PhieuDatBanAn" />
       <Association Name="NhanVien_HoaDonThanhToan" Member="NhanVien" ThisKey="MaNV" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" />
     </Type>
@@ -63,7 +65,6 @@
       <Column Name="TenMonAn" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="DonGia" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaLoai" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Association Name="MonAn_ChiTietPD" Member="ChiTietPDs" ThisKey="MaMA" OtherKey="MaMA" Type="ChiTietPD" />
       <Association Name="LoaiMonAn_MonAn" Member="LoaiMonAn" ThisKey="MaLoai" OtherKey="MaLoai" Type="LoaiMonAn" IsForeignKey="true" />
     </Type>
@@ -80,4 +81,23 @@
       <Association Name="NhanVien_HoaDonThanhToan" Member="HoaDonThanhToans" ThisKey="MaNV" OtherKey="MaNV" Type="HoaDonThanhToan" />
     </Type>
   </Table>
+  <Function Name="dbo.DSPhieuDatBanAn" Method="DSPhieuDatBanAn">
+    <ElementType Name="DSPhieuDatBanAnResult">
+      <Column Name="MaPD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NgayLap" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MaHD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaNV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaBan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DSBanAnCoLoaiMonAn" Method="DSBanAnCoLoaiMonAn">
+    <ElementType Name="DSBanAnCoLoaiMonAnResult">
+      <Column Name="MaMA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TenMonAn" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DonGia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MaLoai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

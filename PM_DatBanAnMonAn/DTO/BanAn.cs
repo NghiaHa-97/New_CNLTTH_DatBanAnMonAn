@@ -9,7 +9,9 @@ namespace DatBanAn_MonAn.DTO
     public class BanAn
     {
         public int MaBan { get; set; }
-        public int TrangThai { get; set; }
+        public string TenBan { get; set; }
         public int SoChoNgoi { get; set; }
+        public int TrangThai { get; set; }
+        
     }
 }

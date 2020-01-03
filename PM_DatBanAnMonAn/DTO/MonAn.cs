@@ -12,6 +12,6 @@ namespace DatBanAn_MonAn.DTO
         public string TenMonAn { get; set; }
         public int DonGia { get; set; }
         public int MaLoai { get; set; }
-        public string Img { get; set; }
+        
     }
 }

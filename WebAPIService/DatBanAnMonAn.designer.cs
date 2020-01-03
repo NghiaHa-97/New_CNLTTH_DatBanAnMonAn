@@ -149,6 +149,20 @@ namespace WebAPIService
 				return this.GetTable<NhanVien>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DSPhieuDatBanAn")]
+		public ISingleResult<DSPhieuDatBanAnResult> DSPhieuDatBanAn()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<DSPhieuDatBanAnResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DSBanAnCoLoaiMonAn")]
+		public ISingleResult<DSBanAnCoLoaiMonAnResult> DSBanAnCoLoaiMonAn()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<DSBanAnCoLoaiMonAnResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BanAn")]
@@ -163,6 +177,8 @@ namespace WebAPIService
 		
 		private System.Nullable<int> _SoChoNgoi;
 		
+		private string _TenBan;
+		
 		private EntitySet<PhieuDatBanAn> _PhieuDatBanAns;
 		
     #region Extensibility Method Definitions
@@ -175,6 +191,8 @@ namespace WebAPIService
     partial void OnTrangThaiChanged();
     partial void OnSoChoNgoiChanging(System.Nullable<int> value);
     partial void OnSoChoNgoiChanged();
+    partial void OnTenBanChanging(string value);
+    partial void OnTenBanChanged();
     #endregion
 		
 		public BanAn()
@@ -239,6 +257,26 @@ namespace WebAPIService
 					this._SoChoNgoi = value;
 					this.SendPropertyChanged("SoChoNgoi");
 					this.OnSoChoNgoiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenBan", DbType="NVarChar(50)")]
+		public string TenBan
+		{
+			get
+			{
+				return this._TenBan;
+			}
+			set
+			{
+				if ((this._TenBan != value))
+				{
+					this.OnTenBanChanging(value);
+					this.SendPropertyChanging();
+					this._TenBan = value;
+					this.SendPropertyChanged("TenBan");
+					this.OnTenBanChanged();
 				}
 			}
 		}
@@ -891,6 +929,8 @@ namespace WebAPIService
 		
 		private System.Nullable<int> _MaNV;
 		
+		private System.Nullable<int> _TongTien;
+		
 		private EntitySet<PhieuDatBanAn> _PhieuDatBanAns;
 		
 		private EntityRef<NhanVien> _NhanVien;
@@ -905,6 +945,8 @@ namespace WebAPIService
     partial void OnNgayNhapChanged();
     partial void OnMaNVChanging(System.Nullable<int> value);
     partial void OnMaNVChanged();
+    partial void OnTongTienChanging(System.Nullable<int> value);
+    partial void OnTongTienChanged();
     #endregion
 		
 		public HoaDonThanhToan()
@@ -974,6 +1016,26 @@ namespace WebAPIService
 					this._MaNV = value;
 					this.SendPropertyChanged("MaNV");
 					this.OnMaNVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Int")]
+		public System.Nullable<int> TongTien
+		{
+			get
+			{
+				return this._TongTien;
+			}
+			set
+			{
+				if ((this._TongTien != value))
+				{
+					this.OnTongTienChanging(value);
+					this.SendPropertyChanging();
+					this._TongTien = value;
+					this.SendPropertyChanged("TongTien");
+					this.OnTongTienChanged();
 				}
 			}
 		}
@@ -1324,8 +1386,6 @@ namespace WebAPIService
 		
 		private System.Nullable<int> _MaLoai;
 		
-		private System.Data.Linq.Binary _Img;
-		
 		private EntitySet<ChiTietPD> _ChiTietPDs;
 		
 		private EntityRef<LoaiMonAn> _LoaiMonAn;
@@ -1342,8 +1402,6 @@ namespace WebAPIService
     partial void OnDonGiaChanged();
     partial void OnMaLoaiChanging(System.Nullable<int> value);
     partial void OnMaLoaiChanged();
-    partial void OnImgChanging(System.Data.Linq.Binary value);
-    partial void OnImgChanged();
     #endregion
 		
 		public MonAn()
@@ -1433,26 +1491,6 @@ namespace WebAPIService
 					this._MaLoai = value;
 					this.SendPropertyChanged("MaLoai");
 					this.OnMaLoaiChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Img", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Img
-		{
-			get
-			{
-				return this._Img;
-			}
-			set
-			{
-				if ((this._Img != value))
-				{
-					this.OnImgChanging(value);
-					this.SendPropertyChanging();
-					this._Img = value;
-					this.SendPropertyChanged("Img");
-					this.OnImgChanged();
 				}
 			}
 		}
@@ -1772,6 +1810,220 @@ namespace WebAPIService
 		{
 			this.SendPropertyChanging();
 			entity.NhanVien = null;
+		}
+	}
+	
+	public partial class DSPhieuDatBanAnResult
+	{
+		
+		private int _MaPD;
+		
+		private System.Nullable<System.DateTime> _NgayLap;
+		
+		private System.Nullable<int> _MaHD;
+		
+		private System.Nullable<int> _MaNV;
+		
+		private System.Nullable<int> _MaBan;
+		
+		private System.Nullable<int> _MaKH;
+		
+		public DSPhieuDatBanAnResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaPD", DbType="Int NOT NULL")]
+		public int MaPD
+		{
+			get
+			{
+				return this._MaPD;
+			}
+			set
+			{
+				if ((this._MaPD != value))
+				{
+					this._MaPD = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayLap", DbType="Date")]
+		public System.Nullable<System.DateTime> NgayLap
+		{
+			get
+			{
+				return this._NgayLap;
+			}
+			set
+			{
+				if ((this._NgayLap != value))
+				{
+					this._NgayLap = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHD", DbType="Int")]
+		public System.Nullable<int> MaHD
+		{
+			get
+			{
+				return this._MaHD;
+			}
+			set
+			{
+				if ((this._MaHD != value))
+				{
+					this._MaHD = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNV", DbType="Int")]
+		public System.Nullable<int> MaNV
+		{
+			get
+			{
+				return this._MaNV;
+			}
+			set
+			{
+				if ((this._MaNV != value))
+				{
+					this._MaNV = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaBan", DbType="Int")]
+		public System.Nullable<int> MaBan
+		{
+			get
+			{
+				return this._MaBan;
+			}
+			set
+			{
+				if ((this._MaBan != value))
+				{
+					this._MaBan = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Int")]
+		public System.Nullable<int> MaKH
+		{
+			get
+			{
+				return this._MaKH;
+			}
+			set
+			{
+				if ((this._MaKH != value))
+				{
+					this._MaKH = value;
+				}
+			}
+		}
+	}
+	
+	public partial class DSBanAnCoLoaiMonAnResult
+	{
+		
+		private int _MaMA;
+		
+		private string _TenMonAn;
+		
+		private System.Nullable<int> _DonGia;
+		
+		private string _TenLoai;
+		
+		private System.Nullable<int> _MaLoai;
+		
+		public DSBanAnCoLoaiMonAnResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaMA", DbType="Int NOT NULL")]
+		public int MaMA
+		{
+			get
+			{
+				return this._MaMA;
+			}
+			set
+			{
+				if ((this._MaMA != value))
+				{
+					this._MaMA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenMonAn", DbType="NVarChar(100)")]
+		public string TenMonAn
+		{
+			get
+			{
+				return this._TenMonAn;
+			}
+			set
+			{
+				if ((this._TenMonAn != value))
+				{
+					this._TenMonAn = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGia", DbType="Int")]
+		public System.Nullable<int> DonGia
+		{
+			get
+			{
+				return this._DonGia;
+			}
+			set
+			{
+				if ((this._DonGia != value))
+				{
+					this._DonGia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenLoai", DbType="NVarChar(500)")]
+		public string TenLoai
+		{
+			get
+			{
+				return this._TenLoai;
+			}
+			set
+			{
+				if ((this._TenLoai != value))
+				{
+					this._TenLoai = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLoai", DbType="Int")]
+		public System.Nullable<int> MaLoai
+		{
+			get
+			{
+				return this._MaLoai;
+			}
+			set
+			{
+				if ((this._MaLoai != value))
+				{
+					this._MaLoai = value;
+				}
+			}
 		}
 	}
 }
